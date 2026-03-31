@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
   Future<Widget> check() async {
     final token = await Storage.getToken();
     return token != null
-      ? Dashboardscreen(token: token)
-      : const Loginscreen();
+      ? DashboardScreen(token: token)
+      : const LoginScreen();
   }
 
   // This widget is the root of your application.
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       home: FutureBuilder(
         future: check(),
         builder: (context, snap) {
-          if (!snap.hasData) return const Center(child: LoadingAnimationWidget.fallingDot(color: Colors.red, size: 50),);
+          if (!snap.hasData) return Center(child: LoadingAnimationWidget.fallingDot(color: Colors.red, size: 50),);
           return snap.data!;
         },
       ),
